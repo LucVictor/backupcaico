@@ -25,4 +25,6 @@ def realizar_backup():
 
 schedule.every().day.at("18:00").do(realizar_backup)
 
-realizar_backup()
+while True:
+    schedule.run_pending()
+    time.sleep(1)
