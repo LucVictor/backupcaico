@@ -17,7 +17,7 @@ banco = os.getenv('banco')
 
 def realizar_backup():
     horario_backup = datetime.now()
-    comando_backup = f"mysqldump -h {endereco_banco} -u {usuario_banco} --port={porta_banco} -p{senha_banco} {banco} > 'backup_{horario_backup}.sql'"
+    comando_backup = f"mysqldump -h {endereco_banco} -u {usuario_banco} --port={porta_banco} -p{senha_banco} {banco} > './backups/backup_{horario_backup}.sql'"
     comando = subprocess.run(comando_backup, shell=True, capture_output=True, text=True)
     enviar_backup(horario_backup)
     return print('Backup realizado')
@@ -25,6 +25,4 @@ def realizar_backup():
 
 schedule.every().day.at("18:00").do(realizar_backup)
 
-while True:
-    schedule.run_pending()
-    time.sleep(1)
+realizar_backup()
