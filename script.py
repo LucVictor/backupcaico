@@ -23,7 +23,7 @@ def realizar_backup():
     return print('Backup realizado')
 
 
-schedule.every().day.at("22:17").do(realizar_backup)
+schedule.every().day.at("18:00").do(realizar_backup)
 
 while True:
     schedule.run_pending()
